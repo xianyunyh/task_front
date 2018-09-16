@@ -8,7 +8,7 @@ mix.js('resources/js/app.js', 'public/js')
 mix.webpackConfig({
     resolve: {
         alias: {
-            '@': path.join(__dirname, './resources/assets/js')
+            '@': path.join(__dirname, './resources/js')
         }
     }
 });

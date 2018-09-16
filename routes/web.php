@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::post('/user/login',function(){
+    return ["data"=>['token'=>"ok"]];
 });
