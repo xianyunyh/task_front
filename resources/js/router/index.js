@@ -8,10 +8,10 @@ const router = new Router({
    /* mode: 'history'*/
 });
 
-
+/*
 router.beforeEach(async (to, from, next) => {
     next()
-});
+});*/
 
 /*router.afterEach((to, from) => {
     router.app.$nextTick(() => {

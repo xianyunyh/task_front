@@ -16,5 +16,18 @@ Route::get('/', function () {
 });
 
 Route::post('/user/login',function(){
-    return ["data"=>['token'=>"ok"]];
+    return ["data"=>['token'=>"ok"],"code"=>20000];
 });
+Route::get('/user/info',function(){
+    return [
+        "code"=>20000,
+        "data"=>[
+            "roles"=>["admin"]
+
+        ]
+    ];
+});
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');
