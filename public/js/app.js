@@ -49762,7 +49762,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 // 创建axios实例
 var service = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
-  baseURL: Object({"NODE_ENV":"development"}).BASE_API, // api的base_url
+  baseURL: Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).BASE_API, // api的base_url
   timeout: 5000 // 请求超时时间
 });
 

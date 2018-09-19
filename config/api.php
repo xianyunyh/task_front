@@ -155,7 +155,7 @@ return [
     */
 
     'middleware' => [
-
+        'jwt.auth' => 'App\Api\Middleware\GetUserFromToken',
     ],
 
     /*
