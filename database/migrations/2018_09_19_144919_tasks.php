@@ -20,9 +20,9 @@ class Tasks extends Migration
             $table->string('cron');
             $table->integer('host_id');
             $table->integer('cycle');
-            $table->timestamp('start_time');
-            $table->timestamp('next_time');
-            $table->integer('timeout')->default(0);
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('next_time')->nullable();
+            $table->integer('timeout');
             $table->timestamps();
         });
     }
