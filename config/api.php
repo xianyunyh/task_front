@@ -156,6 +156,7 @@ return [
 
     'middleware' => [
         'jwt.auth' => 'App\Api\Middleware\GetUserFromToken',
+        'session.auth'=>"\Illuminate\Session\Middleware\StartSession"
     ],
 
     /*
