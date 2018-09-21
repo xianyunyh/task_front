@@ -15,18 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/user/login',function(){
-    return ["data"=>['token'=>"ok"],"code"=>20000];
-});
-Route::get('/user/info',function(){
-    return [
-        "code"=>20000,
-        "data"=>[
-            "roles"=>["admin"]
-
-        ]
-    ];
-});
+//Route::post('/user/login',function(){
+//    return ["data"=>['token'=>"ok"],"code"=>20000];
+//});
+//Route::get('/user/info',function(){
+//    return [
+//        "code"=>20000,
+//        "data"=>[
+//            "roles"=>["admin"]
+//
+//        ]
+//    ];
+//});
 Auth::routes();
 
 

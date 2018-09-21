@@ -64636,7 +64636,7 @@ if (hadRuntime) {
 
 function login(username, password) {
   return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
-    url: '/user/login',
+    url: 'v1/user/login',
     method: 'post',
     data: {
       username: username,
@@ -65793,11 +65793,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'login',
   data: function data() {
     var validateUsername = function validateUsername(rule, value, callback) {
-      if (!Object(__WEBPACK_IMPORTED_MODULE_0__utils_validate__["a" /* isvalidUsername */])(value)) {
-        callback(new Error('请输入正确的用户名'));
-      } else {
-        callback();
-      }
+      // if (!isvalidUsername(value)) {
+      //   callback(new Error('请输入正确的用户名'))
+      // } else {
+      //   callback()
+      // }
     };
     var validatePass = function validatePass(rule, value, callback) {
       if (value.length < 5) {
@@ -65812,7 +65812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         password: 'admin'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        username: [{ required: true, trigger: 'blur' }],
         password: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
       loading: false,
@@ -65854,7 +65854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isvalidUsername;
+/* unused harmony export isvalidUsername */
 /* unused harmony export validateURL */
 /* unused harmony export validateLowerCase */
 /* unused harmony export validateUpperCase */
