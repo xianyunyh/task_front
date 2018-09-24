@@ -16,7 +16,8 @@ use Illuminate\Http\Request;
  * @var Dingo\Api\Routing\Router;
  */
 $api = app()->get('Dingo\Api\Routing\Router');
-$api->version('v1', function ( Dingo\Api\Routing\Router $api) {
-    $api->get('user/{id}', 'App\Api\Controllers\UserController@show');
-    $api->post("user/login",'App\Api\Controllers\UserController@login');
+$api->version('v1',['middleware' => 'web'], function ( Dingo\Api\Routing\Router $api) {
+    $api->get('user/show', 'App\Http\Controllers\Api\UserController@show');
+    $api->post("login",'App\Http\Controllers\Api\LoginController@login');
+    $api->get("user/info",'App\Http\Controllers\Api\UserController@info');
 });

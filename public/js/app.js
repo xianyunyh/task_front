@@ -64636,7 +64636,7 @@ if (hadRuntime) {
 
 function login(username, password) {
   return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
-    url: 'v1/user/login',
+    url: 'v1/login',
     method: 'post',
     data: {
       username: username,
@@ -64647,7 +64647,7 @@ function login(username, password) {
 
 function getInfo(token) {
   return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
-    url: '/user/info',
+    url: 'v1/user/info',
     method: 'get',
     params: { token: token }
   });
