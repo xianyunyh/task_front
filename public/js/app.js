@@ -64655,8 +64655,8 @@ function getInfo(token) {
 
 function logout() {
   return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
-    url: '/user/logout',
-    method: 'post'
+    url: 'v1/logout',
+    method: 'get'
   });
 }
 
