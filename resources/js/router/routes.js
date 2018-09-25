@@ -20,7 +20,7 @@ export default   [
         component: Layout,
         redirect: '/example/table',
         name: 'Example',
-        meta: {title: 'Example', icon: 'example'},
+        meta: {title: '例子', icon: 'el-icon-tickets'},
         children: [
             {
                 path: 'table',

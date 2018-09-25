@@ -61917,7 +61917,7 @@ exports.push([module.i, "/*fade*/\n.fade-enter-active,\n.fade-leave-active {\n  
     component: __WEBPACK_IMPORTED_MODULE_0__views_layout_Layout___default.a,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    meta: { title: '例子', icon: 'el-icon-tickets' },
     children: [{
         path: 'table',
         name: 'Table',
@@ -62978,6 +62978,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
 
 
 
@@ -63313,26 +63315,17 @@ var render = function() {
                 "el-submenu",
                 { attrs: { index: _vm.item.name || _vm.item.path } },
                 [
-                  _c(
-                    "template",
-                    { slot: "title" },
-                    [
-                      _vm.item.meta && _vm.item.meta.icon
-                        ? _c("svg-icon", {
-                            attrs: { "icon-class": _vm.item.meta.icon }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.item.meta && _vm.item.meta.title
-                        ? _c(
-                            "span",
-                            { attrs: { slot: "title" }, slot: "title" },
-                            [_vm._v(_vm._s(_vm.item.meta.title))]
-                          )
-                        : _vm._e()
-                    ],
-                    1
-                  ),
+                  _c("template", { slot: "title" }, [
+                    _c("i", { staticClass: "el-icon-location" }),
+                    _vm._v(" "),
+                    _vm.item.meta && _vm.item.meta.title
+                      ? _c(
+                          "span",
+                          { attrs: { slot: "title" }, slot: "title" },
+                          [_vm._v(_vm._s(_vm.item.meta.title))]
+                        )
+                      : _vm._e()
+                  ]),
                   _vm._v(" "),
                   _vm._l(_vm.item.children, function(child) {
                     return !child.hidden
@@ -65923,12 +65916,9 @@ var render = function() {
             "el-form-item",
             { attrs: { prop: "username" } },
             [
-              _c(
-                "span",
-                { staticClass: "svg-container svg-container_login" },
-                [_c("svg-icon", { attrs: { "icon-class": "user" } })],
-                1
-              ),
+              _c("span", { staticClass: "svg-container svg-container_login" }, [
+                _c("i", { staticClass: "el-icon-location" })
+              ]),
               _vm._v(" "),
               _c("el-input", {
                 attrs: {
