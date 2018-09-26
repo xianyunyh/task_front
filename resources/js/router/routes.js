@@ -16,108 +16,47 @@ export default   [
     },
 
     {
-        path: '/example',
+        path: '/task',
         component: Layout,
-        redirect: '/example/table',
+        redirect: '/task/index',
         name: 'Example',
-        meta: {title: '例子', icon: 'el-icon-tickets'},
-        children: [
-            {
-                path: 'table',
-                name: 'Table',
-                component: require('@/views/table/index'),
-                meta: {title: 'Table', icon: 'table'}
-            },
-            {
-                path: 'tree',
-                name: 'Tree',
-                component: require('@/views/tree/index'),
-                meta: {title: 'Tree', icon: 'tree'}
-            }
-        ]
-    },
-
-    {
-        path: '/form',
-        component: Layout,
+        meta: {title: '任务管理', icon: 'el-icon-tickets'},
         children: [
             {
                 path: 'index',
-                name: 'Form',
-                component: require('@/views/form/index'),
-                meta: {title: 'Form', icon: 'form'}
-            }
-        ]
-    },
-
-    {
-        path: '/nested',
-        component: Layout,
-        redirect: '/nested/menu1',
-        name: 'Nested',
-        meta: {
-            title: 'nested',
-            icon: 'nested'
-        },
-        children: [
-            {
-                path: 'menu1',
-                component: require('@/views/nested/menu1/index'), // Parent router-view
-                name: 'Menu1',
-                meta: {title: 'menu1'},
-                children: [
-                    {
-                        path: 'menu1-1',
-                        component: require('@/views/nested/menu1/menu1-1'),
-                        name: 'Menu1-1',
-                        meta: {title: 'menu1-1'}
-                    },
-                    {
-                        path: 'menu1-2',
-                        component: require('@/views/nested/menu1/menu1-2'),
-                        name: 'Menu1-2',
-                        meta: {title: 'menu1-2'},
-                        children: [
-                            {
-                                path: 'menu1-2-1',
-                                component: require('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                                name: 'Menu1-2-1',
-                                meta: {title: 'menu1-2-1'}
-                            },
-                            {
-                                path: 'menu1-2-2',
-                                component: require('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                                name: 'Menu1-2-2',
-                                meta: {title: 'menu1-2-2'}
-                            }
-                        ]
-                    },
-                    {
-                        path: 'menu1-3',
-                        component: require('@/views/nested/menu1/menu1-3'),
-                        name: 'Menu1-3',
-                        meta: {title: 'menu1-3'}
-                    }
-                ]
+                name: 'list',
+                component: require('@/views/task/index'),
+                meta: {title: '任务列表', icon: 'table'}
             },
             {
-                path: 'menu2',
-                component: require('@/views/nested/menu2/index'),
-                meta: {title: 'menu2'}
-            }
+                path: 'add',
+                name: 'add',
+                hidden: true,
+                component: require('@/views/task/add'),
+                meta: {title: '添加任务', icon: 'tree'}
+            },
+            {
+                path: 'edit',
+                name: 'edit',
+                hidden: true,
+                component: require('@/views/task/add'),
+                meta: {title: '编辑任务', icon: 'tree'}
+            },
+
         ]
     },
 
     {
-        path: 'external-link',
+        path: '/log',
         component: Layout,
         children: [
             {
-                path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-                meta: {title: 'externalLink', icon: 'link'}
+                path: 'list',
+                name: 'loglist',
+                component: require('@/views/form/index'),
+                meta: {title: '日志列表', icon: 'form'}
             }
         ]
     },
-
     {path: '*', redirect: '/404', hidden: true}
 ]
