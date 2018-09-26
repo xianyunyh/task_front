@@ -2,7 +2,6 @@ import Layout from '@/views/layout/Layout'
 export default   [
     {path: '/login', component: require('@/views/login/index')},
     {path: '/404', component: require('@/views/404'), hidden: true},
-
     {
         path: '/',
         component: Layout,
@@ -14,7 +13,47 @@ export default   [
             component: require('@/views/dashboard/index')
         }]
     },
+    {
+        path: '/',
+        component: Layout,
+        redirect: '/dashboard',
+        name: 'Dashboard',
+        hidden: true,
+        children: [{
+            path: 'dashboard',
+            component: require('@/views/dashboard/index')
+        }]
+    },
+    {
+        path: '/host',
+        component: Layout,
+        redirect: '/host/index',
+        name: 'Example',
+        meta: {title: '主机管理', icon: 'el-icon-tickets'},
+        children: [
+            {
+                path: 'index',
+                name: 'list',
+                component: require('@/views/task/index'),
+                meta: {title: '主机列表', icon: 'table'}
+            },
+            {
+                path: 'add',
+                name: 'add',
+                hidden: true,
+                component: require('@/views/task/add'),
+                meta: {title: '添加主机', icon: 'tree'}
+            },
+            {
+                path: 'edit',
+                name: 'edit',
+                hidden: true,
+                component: require('@/views/task/add'),
+                meta: {title: '编辑主机', icon: 'tree'}
+            },
 
+        ]
+    },
     {
         path: '/task',
         component: Layout,

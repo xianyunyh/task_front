@@ -22,6 +22,9 @@ $api->version('v1',['middleware' => 'web'], function ( Dingo\Api\Routing\Router 
     $api->group(['middleware' => 'auth'],function(Dingo\Api\Routing\Router $api){
         $api->get("user/info",'App\Http\Controllers\Api\UserController@info');
         $api->get('user/show', 'App\Http\Controllers\Api\UserController@show');
+        $api->resource('task','App\Http\Controllers\Api\TaskController');
+        $api->resource('hosts','App\Http\Controllers\Api\HostsController');
+        $api->resource('log','App\Http\Controllers\Api\LogController');
     });
 
 });

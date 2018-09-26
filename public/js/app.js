@@ -61796,6 +61796,40 @@ exports.push([module.i, "/*fade*/\n.fade-enter-active,\n.fade-leave-active {\n  
         component: __webpack_require__(257)
     }]
 }, {
+    path: '/',
+    component: __WEBPACK_IMPORTED_MODULE_0__views_layout_Layout___default.a,
+    redirect: '/dashboard',
+    name: 'Dashboard',
+    hidden: true,
+    children: [{
+        path: 'dashboard',
+        component: __webpack_require__(257)
+    }]
+}, {
+    path: '/host',
+    component: __WEBPACK_IMPORTED_MODULE_0__views_layout_Layout___default.a,
+    redirect: '/host/index',
+    name: 'Example',
+    meta: { title: '主机管理', icon: 'el-icon-tickets' },
+    children: [{
+        path: 'index',
+        name: 'list',
+        component: __webpack_require__(310),
+        meta: { title: '主机列表', icon: 'table' }
+    }, {
+        path: 'add',
+        name: 'add',
+        hidden: true,
+        component: __webpack_require__(313),
+        meta: { title: '添加主机', icon: 'tree' }
+    }, {
+        path: 'edit',
+        name: 'edit',
+        hidden: true,
+        component: __webpack_require__(313),
+        meta: { title: '编辑主机', icon: 'tree' }
+    }]
+}, {
     path: '/task',
     component: __WEBPACK_IMPORTED_MODULE_0__views_layout_Layout___default.a,
     redirect: '/task/index',
