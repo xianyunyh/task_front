@@ -8,4 +8,5 @@ class HostsModel extends Model
 {
     protected $table = "hosts";
     protected $hidden = [];
+    protected $fillable = ['name','host','port','protocol'];
 }
