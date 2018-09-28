@@ -113,12 +113,11 @@
             this.fetchData()
         },
         methods: {
-            fetchData() {
+            async fetchData() {
                 this.listLoading = true;
-                getHostList(this.listQuery).then(response => {
-                    this.list = response.data;
-                    this.listLoading = false
-                })
+                let response = await  getHostList(this.listQuery)
+                this.list = response.data;
+                this.listLoading = false
             },
             deleteRecord(id) {
                 this.$confirm('此操作将删除该记录, 是否继续?', '提示', {
@@ -133,10 +132,9 @@
                 }).catch(() => {
                 })
             },
-             editRecord(id) {
-                getHostInfo(id).then(response=>{
-                    this.form = response.data
-                })
+            async editRecord(id) {
+                let response = await  getHostInfo(id);
+                this.form = response.data
                 this.dialogFormVisible = true;
             },
             doEdit() {
