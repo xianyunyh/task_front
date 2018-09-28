@@ -5,15 +5,18 @@ namespace App\Helpers;
 
 trait ResponseHelper
 {
-    public function succes(array $data = [],string $message = "ok",int $code = self::SUCCESS_CODE)
+    public function success( $data = [],string $message = "ok",int $code = self::SUCCESS_CODE)
     {
+        if(!is_array($data)) {
+            $data = collect($data)->toArray();
+        }
         return response([
             'data'=>$data,
             'message'=>$message,
             'code'=>$code,
         ]);
     }
-    public function error(array $data = [],string $message = "ok",int $code = self::ERROR_CODE)
+    public function error(string $message = "ok",int $code = self::ERROR_CODE)
     {
         return response([
             'message'=>$message,
