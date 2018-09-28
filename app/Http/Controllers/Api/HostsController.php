@@ -16,20 +16,25 @@ class HostsController extends BaseController
         $this->model = $model;
     }
 
+    public function store()
+    {
+
+    }
+
+
     public function index()
     {
-        return response(['data' => $this->model->all(), 'code' => 20000]);
+        return $this->succes($this->model->all());
     }
 
     public function show(int $id)
     {
-        return response(['data' => $this->model->find($id), 'code' => 20000]);
+        $data = $this->model->find($id) ?: [];
+        return $this->succes($data);
     }
 
     /**
      * @api DELETE /hosts/:id
-     * @param int $id
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function delete(int $id)
     {
