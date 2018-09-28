@@ -14,34 +14,23 @@ export default   [
         }]
     },
     {
-        path: '/',
+        path: '/hosts',
         component: Layout,
-        redirect: '/dashboard',
-        name: 'Dashboard',
-        hidden: true,
-        children: [{
-            path: 'dashboard',
-            component: require('@/views/dashboard/index')
-        }]
-    },
-    {
-        path: '/host',
-        component: Layout,
-        redirect: '/host/index',
-        name: 'Example',
+        redirect: '/hosts/index',
+        name: 'hosts',
         meta: {title: '主机管理', icon: 'el-icon-tickets'},
         children: [
             {
                 path: 'index',
                 name: 'list',
-                component: require('@/views/task/index'),
-                meta: {title: '主机列表', icon: 'table'}
+                component: require('@/views/hosts/index'),
+                meta: {title: '主机列表', icon: "hosts"}
             },
             {
                 path: 'add',
                 name: 'add',
                 hidden: true,
-                component: require('@/views/task/add'),
+                component: require('@/views/hosts/add'),
                 meta: {title: '添加主机', icon: 'tree'}
             },
             {
@@ -58,7 +47,7 @@ export default   [
         path: '/task',
         component: Layout,
         redirect: '/task/index',
-        name: 'Example',
+        name: 'tasks',
         meta: {title: '任务管理', icon: 'el-icon-tickets'},
         children: [
             {
