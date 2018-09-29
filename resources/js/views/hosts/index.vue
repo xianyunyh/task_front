@@ -138,6 +138,8 @@
                 this.dialogFormVisible = true;
             },
             doEdit() {
+                const post = this.form
+
                 this.dialogFormVisible = false
             }
 

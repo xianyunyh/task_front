@@ -46,6 +46,16 @@ class HostsController extends BaseController
         return $this->success($data);
     }
 
+    public function update(int $id)
+    {
+        $data = collect(request()->json())->toArray();
+        $host = $this->model->find($id);
+        if(empty($host))  {
+            return $this->error('host不存在');
+        }
+        $this->model->where(['id'=>$id])->update($data);
+        return $this->success();
+    }
     /**
      * @api DELETE /hosts/:id
      */
