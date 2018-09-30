@@ -66476,6 +66476,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 
@@ -66523,7 +66524,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 this.listLoading = true;
                                 _context.next = 3;
-                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["c" /* getHostList */])(this.listQuery);
+                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["d" /* getHostList */])(this.listQuery);
 
                             case 3:
                                 response = _context.sent;
@@ -66553,7 +66554,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(function () {
-                Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["a" /* deleteHost */])({ id: id }).then(function (res) {
+                Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["b" /* deleteHost */])({ id: id }).then(function (res) {
                     console.log(res);
                 });
 
@@ -66575,7 +66576,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 this.action == 'edit';
                                 _context2.next = 3;
-                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["b" /* getHostInfo */])(id);
+                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["c" /* getHostInfo */])(id);
 
                             case 3:
                                 response = _context2.sent;
@@ -66609,7 +66610,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 console.log(post);
                                 _context3.prev = 2;
                                 _context3.next = 5;
-                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["d" /* updateHost */])(post);
+                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["e" /* updateHost */])(post);
 
                             case 5:
                                 response = _context3.sent;
@@ -66648,6 +66649,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         doAdd: function doAdd() {
             this.dialogFormVisible = false;
             console.log(this.form);
+            Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["a" /* addHost */])(this.form);
         }
     }
 });
@@ -66657,10 +66659,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["c"] = getHostList;
-/* harmony export (immutable) */ __webpack_exports__["b"] = getHostInfo;
-/* harmony export (immutable) */ __webpack_exports__["d"] = updateHost;
-/* harmony export (immutable) */ __webpack_exports__["a"] = deleteHost;
+/* harmony export (immutable) */ __webpack_exports__["d"] = getHostList;
+/* harmony export (immutable) */ __webpack_exports__["c"] = getHostInfo;
+/* harmony export (immutable) */ __webpack_exports__["a"] = addHost;
+/* harmony export (immutable) */ __webpack_exports__["e"] = updateHost;
+/* harmony export (immutable) */ __webpack_exports__["b"] = deleteHost;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(54);
 
 
@@ -66677,7 +66680,13 @@ function getHostInfo(id) {
         method: 'get'
     });
 }
-
+function addHost(param) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
+        url: 'v1/hosts',
+        method: 'post',
+        data: param
+    });
+}
 function updateHost(param) {
     var id = param.id;
 
@@ -67053,18 +67062,6 @@ var render = function() {
               _c(
                 "el-button",
                 {
-                  on: {
-                    click: function($event) {
-                      _vm.dialogFormVisible = false
-                    }
-                  }
-                },
-                [_vm._v("取 消")]
-              ),
-              _vm._v(" "),
-              _c(
-                "el-button",
-                {
                   attrs: { type: "primary" },
                   on: {
                     click: function($event) {
@@ -67072,7 +67069,25 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                修改\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.action === "edit" ? "修改" : "新增") +
+                      "\n            "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.dialogFormVisible = false
+                    }
+                  }
+                },
+                [_vm._v("取 消")]
               )
             ],
             1

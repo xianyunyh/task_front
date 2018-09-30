@@ -73,7 +73,7 @@ class HostsController extends BaseController
         if (empty($host)) {
             return $this->error('host不存在');
         }
-        $this->model->create($data)->whereId($id)->update($data);
+        $this->model->whereId($id)->update($data);
         return $this->success();
     }
 

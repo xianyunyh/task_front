@@ -76,10 +76,11 @@
                 <input type="hidden" name="">
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
+
                 <el-button type="primary" @click="action !== 'edit' ? doAdd() : doEdit() ">
-                    修改
+                    {{action === 'edit'? '修改':'新增'}}
                 </el-button>
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
             </div>
         </el-dialog>
 
@@ -87,7 +88,7 @@
 </template>
 
 <script>
-    import {getHostList,getHostInfo,deleteHost,updateHost} from '@/api/hosts'
+    import {getHostList,getHostInfo,deleteHost,updateHost,addHost} from '@/api/hosts'
 
     export default {
         data() {
@@ -173,6 +174,7 @@
             doAdd() {
                 this.dialogFormVisible  = false
                 console.log(this.form)
+                addHost(this.form)
             }
 
 

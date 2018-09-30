@@ -13,7 +13,13 @@ export  function getHostInfo(id) {
         method: 'get'
     })
 }
-
+export  function addHost(param) {
+    return request({
+        url: 'v1/hosts',
+        method: 'post',
+        data: param
+    })
+}
 export  function updateHost(param) {
     const id = param.id
 
