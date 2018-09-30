@@ -66469,13 +66469,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            list: null,
+            list: [],
             listLoading: false,
             dialogTableVisible: false,
             dialogFormVisible: false,
@@ -66486,6 +66493,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 host: '',
                 status: ''
             },
+            action: 'edit',
             formLabelWidth: '80px'
         };
     },
@@ -66497,6 +66505,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 draft: 'gray',
                 deleted: 'danger'
             };
+
             return statusMap[status];
         }
     },
@@ -66514,7 +66523,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 this.listLoading = true;
                                 _context.next = 3;
-                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["b" /* getHostList */])(this.listQuery);
+                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["c" /* getHostList */])(this.listQuery);
 
                             case 3:
                                 response = _context.sent;
@@ -66544,6 +66553,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(function () {
+                Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["a" /* deleteHost */])({ id: id }).then(function (res) {
+                    console.log(res);
+                });
+
+                _this.list = _this.list.filter(function (item) {
+                    return item.id != id;
+                });
                 _this.$message({
                     type: 'success',
                     message: '删除成功!'
@@ -66557,16 +66573,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                _context2.next = 2;
-                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["a" /* getHostInfo */])(id);
+                                this.action == 'edit';
+                                _context2.next = 3;
+                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["b" /* getHostInfo */])(id);
 
-                            case 2:
+                            case 3:
                                 response = _context2.sent;
 
-                                this.form = response.data;
+                                this.form = response.data || {};
                                 this.dialogFormVisible = true;
 
-                            case 5:
+                            case 6:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -66580,10 +66597,57 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return editRecord;
         }(),
-        doEdit: function doEdit() {
-            var post = this.form;
+        doEdit: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var post, response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                post = this.form;
 
+                                console.log(post);
+                                _context3.prev = 2;
+                                _context3.next = 5;
+                                return Object(__WEBPACK_IMPORTED_MODULE_1__api_hosts__["d" /* updateHost */])(post);
+
+                            case 5:
+                                response = _context3.sent;
+
+                                console.log(response);
+                                _context3.next = 12;
+                                break;
+
+                            case 9:
+                                _context3.prev = 9;
+                                _context3.t0 = _context3['catch'](2);
+                                throw Error(_context3.t0);
+
+                            case 12:
+                                this.dialogFormVisible = false;
+
+                            case 13:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this, [[2, 9]]);
+            }));
+
+            function doEdit() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return doEdit;
+        }(),
+        addHost: function addHost() {
+            this.form = {};
+            this.action = "add";
+            this.dialogFormVisible = true;
+        },
+        doAdd: function doAdd() {
             this.dialogFormVisible = false;
+            console.log(this.form);
         }
     }
 });
@@ -66593,9 +66657,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = getHostList;
-/* harmony export (immutable) */ __webpack_exports__["a"] = getHostInfo;
-/* unused harmony export updateHost */
+/* harmony export (immutable) */ __webpack_exports__["c"] = getHostList;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getHostInfo;
+/* harmony export (immutable) */ __webpack_exports__["d"] = updateHost;
+/* harmony export (immutable) */ __webpack_exports__["a"] = deleteHost;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_request__ = __webpack_require__(54);
 
 
@@ -66615,9 +66680,21 @@ function getHostInfo(id) {
 
 function updateHost(param) {
     var id = param.id;
+
     return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
         url: 'v1/hosts/' + String(id),
         method: 'put',
+        data: param
+    });
+}
+function deleteHost(param) {
+    var id = param.id || "";
+    if (!id) {
+        return false;
+    }
+    return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
+        url: 'v1/hosts/' + String(id),
+        method: 'delete',
         param: param
     });
 }
@@ -66634,6 +66711,27 @@ var render = function() {
     "div",
     { staticClass: "app-container" },
     [
+      _c(
+        "el-row",
+        [
+          _c(
+            "el-button",
+            {
+              attrs: {
+                icon: "el-icon-circle-plus",
+                size: "small",
+                type: "info"
+              },
+              on: { click: _vm.addHost }
+            },
+            [_vm._v("添加信息")]
+          ),
+          _vm._v(" "),
+          _c("br")
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "el-table",
         {
@@ -66663,7 +66761,7 @@ var render = function() {
                   return [
                     _vm._v(
                       "\n                " +
-                        _vm._s(scope.$index) +
+                        _vm._s(++scope.$index) +
                         "\n            "
                     )
                   ]
@@ -66788,7 +66886,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.editRecord(scope.row.status)
+                            _vm.editRecord(scope.row.id)
                           }
                         }
                       },
@@ -66805,7 +66903,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.deleteRecord(scope.row.status)
+                            _vm.deleteRecord(scope.row.id)
                           }
                         }
                       },
@@ -66929,15 +67027,17 @@ var render = function() {
                       }
                     },
                     [
-                      _c("el-option", { attrs: { label: "启用", value: "1" } }),
+                      _c("el-option", { attrs: { label: "启用", value: 1 } }),
                       _vm._v(" "),
-                      _c("el-option", { attrs: { label: "关闭", value: "0" } })
+                      _c("el-option", { attrs: { label: "关闭", value: 0 } })
                     ],
                     1
                   )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _c("input", { attrs: { type: "hidden", name: "" } })
             ],
             1
           ),
@@ -66964,8 +67064,15 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-button",
-                { attrs: { type: "primary" }, on: { click: _vm.doEdit } },
-                [_vm._v("修改")]
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.action !== "edit" ? _vm.doAdd() : _vm.doEdit()
+                    }
+                  }
+                },
+                [_vm._v("\n                修改\n            ")]
               )
             ],
             1

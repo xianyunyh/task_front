@@ -8,6 +8,6 @@ class HostsModel extends BaseModel
 {
     protected $table = "hosts";
     protected $hidden = [];
+    public    $timestamps = true;
     protected $fillable = ['name','host','port','protocol'];
-
 }

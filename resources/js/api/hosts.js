@@ -16,9 +16,21 @@ export  function getHostInfo(id) {
 
 export  function updateHost(param) {
     const id = param.id
+
     return request({
         url: 'v1/hosts/' + String(id),
         method: 'put',
+        data: param
+    })
+}
+export  function deleteHost(param) {
+    const id = param.id || ""
+    if(!id) {
+        return false;
+    }
+    return request({
+        url: 'v1/hosts/' + String(id),
+        method: 'delete',
         param:param
     })
 }

@@ -1,9 +1,13 @@
 <template>
     <div class="app-container">
+        <el-row>
+            <el-button @click="addHost" icon="el-icon-circle-plus" size="small" type="info">添加信息</el-button>
+            <br>
+        </el-row>
         <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row>
             <el-table-column align="center" label='ID' width="95">
                 <template slot-scope="scope">
-                    {{scope.$index}}
+                    {{++scope.$index}}
                 </template>
             </el-table-column>
             <el-table-column label="名字">
@@ -40,10 +44,10 @@
             </el-table-column>
             <el-table-column align="center" width="300" label="操作">
                 <template slot-scope="scope">
-                    <el-button type="primary" size="small"  @click="editRecord(scope.row.status)" icon="el-icon-edit">
+                    <el-button type="primary" size="small"  @click="editRecord(scope.row.id)" icon="el-icon-edit">
                         编辑
                     </el-button>
-                    <el-button type="danger" size="small" @click="deleteRecord(scope.row.status)" icon="el-icon-delete">
+                    <el-button type="danger" size="small" @click="deleteRecord(scope.row.id)" icon="el-icon-delete">
                         删除
                     </el-button>
 
@@ -65,14 +69,17 @@
                 </el-form-item>
                 <el-form-item label="是否启用" :label-width="formLabelWidth">
                     <el-select v-model="form.status">
-                        <el-option label="启用" value="1"></el-option>
-                        <el-option label="关闭" value="0"></el-option>
+                        <el-option label="启用" :value=1></el-option>
+                        <el-option label="关闭" :value=0></el-option>
                     </el-select>
                 </el-form-item>
+                <input type="hidden" name="">
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="doEdit">修改</el-button>
+                <el-button type="primary" @click="action !== 'edit' ? doAdd() : doEdit() ">
+                    修改
+                </el-button>
             </div>
         </el-dialog>
 
@@ -80,12 +87,12 @@
 </template>
 
 <script>
-    import {getHostList,getHostInfo} from '@/api/hosts'
+    import {getHostList,getHostInfo,deleteHost,updateHost} from '@/api/hosts'
 
     export default {
         data() {
             return {
-                list: null,
+                list: [],
                 listLoading: false,
                 dialogTableVisible: false,
                 dialogFormVisible: false,
@@ -96,6 +103,7 @@
                     host: '',
                     status: ''
                 },
+                action: 'edit',
                 formLabelWidth: '80px'
             }
         },
@@ -106,6 +114,7 @@
                     draft: 'gray',
                     deleted: 'danger'
                 };
+
                 return statusMap[status]
             }
         },
@@ -119,12 +128,19 @@
                 this.list = response.data;
                 this.listLoading = false
             },
-            deleteRecord(id) {
+             deleteRecord(id) {
                 this.$confirm('此操作将删除该记录, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    deleteHost({id:id}).then((res)=>{
+                        console.log(res)
+                    })
+
+                    this.list = this.list.filter((item)=>{
+                        return item.id != id
+                    })
                     this.$message({
                         type: 'success',
                         message: '删除成功!'
@@ -133,15 +149,32 @@
                 })
             },
             async editRecord(id) {
+                this.action == 'edit'
                 let response = await  getHostInfo(id);
-                this.form = response.data
+                this.form = response.data || {}
                 this.dialogFormVisible = true;
             },
-            doEdit() {
+            async doEdit() {
                 const post = this.form
-
+                console.log(post)
+                try {
+                    let response = await updateHost(post)
+                    console.log(response)
+                }catch (e) {
+                    throw Error(e)
+                }
                 this.dialogFormVisible = false
+            },
+            addHost() {
+                this.form = {};
+                this.action = "add"
+                this.dialogFormVisible = true;
+            },
+            doAdd() {
+                this.dialogFormVisible  = false
+                console.log(this.form)
             }
+
 
         }
     }
