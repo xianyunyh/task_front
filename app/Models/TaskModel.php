@@ -8,5 +8,11 @@ class TaskModel extends Model
 {
     //
     protected $table = 'tasks';
+    protected $fillable = ['name'];
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    protected function host()
+    {
+        return $this->belongsTo('App\\Models\\HostsModel','host_id');
+    }
 }

@@ -52,20 +52,20 @@ export default   [
         children: [
             {
                 path: 'index',
-                name: 'list',
+                name: 'task_index',
                 component: require('@/views/task/index'),
                 meta: {title: '任务列表', icon: 'table'}
             },
             {
                 path: 'add',
-                name: 'add',
+                name: 'task_add',
                 hidden: true,
                 component: require('@/views/task/add'),
                 meta: {title: '添加任务', icon: 'tree'}
             },
             {
                 path: 'edit',
-                name: 'edit',
+                name: 'task_edit',
                 hidden: true,
                 component: require('@/views/task/add'),
                 meta: {title: '编辑任务', icon: 'tree'}

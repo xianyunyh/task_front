@@ -157,7 +157,6 @@
             },
             async doEdit() {
                 const post = this.form
-                console.log(post)
                 try {
                     let response = await updateHost(post)
                     console.log(response)
