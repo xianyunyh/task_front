@@ -11,7 +11,7 @@ class TaskModel extends Model
     protected $fillable = ['name'];
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected function host()
+    public function host()
     {
         return $this->belongsTo('App\\Models\\HostsModel','host_id');
     }

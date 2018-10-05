@@ -13,11 +13,11 @@ export  function getTaskInfo(id) {
         method: 'get'
     })
 }
-export  function addTask(param) {
+export  function addTask(data) {
     return request({
         url: 'v1/hosts',
         method: 'post',
-        data: param
+        data: data
     })
 }
 export  function updateTask(param) {
