@@ -20,12 +20,12 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $data = [
-            'email' => $request->json('username'),
-            'password' => $request->json('password')
+            'email'    => $request->json('username'),
+            'password' => $request->json('password'),
         ];
         $res = Validator::make($data, [
             $this->username() => 'required|email',
-            'password' => 'required|string',
+            'password'        => 'required|string',
         ]);
         if ($res->fails()) {
             return response(['message' => $res->errors()->first(), 'code' => 30000]);
@@ -37,13 +37,14 @@ class LoginController extends Controller
         }
         session()->regenerate();
         $token = session('_token');
+
         return response(['data' => ['token' => $token], 'code' => 20000]);
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
-        return response(['message'=>'ok','code'=>20000]);
-    }
 
+        return response(['message'=>'ok', 'code'=>20000]);
+    }
 }

@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: tianlei
  * Date: 18-9-24
- * Time: 下午5:21
+ * Time: 下午5:21.
  */
 
 namespace App\Http\Controllers\Api;
-
 
 use App\Http\Controllers\Controller;
 
@@ -26,12 +25,11 @@ class UserController extends Controller
     public function info()
     {
         return [
-            'data'=>[
-                'user'=>'admin',
-                'roles'=>['admin']
+            'data'=> [
+                'user' => 'admin',
+                'roles'=> ['admin'],
             ],
-            'code'=>20000
+            'code'=> 20000,
         ];
     }
-
 }

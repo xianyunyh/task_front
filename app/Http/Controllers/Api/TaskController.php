@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\TaskModel;
-use Illuminate\Support\Facades\Validator;
 
 class TaskController extends BaseController
 {
@@ -24,17 +23,19 @@ class TaskController extends BaseController
 
     public function store()
     {
-        $posts    = collect(request()->json())->toArray();
+        $posts = collect(request()->json())->toArray();
 
         $insert = $this->model->create($posts)->save();
         if (false === $insert) {
             return $this->error('add error', 30004);
         }
+
         return $this->success();
     }
 
     /**
      * @param int $id
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function show(int $id)
@@ -43,8 +44,8 @@ class TaskController extends BaseController
         dd($m->host);
         $data = collect($this->model->find($id))
             ->except(['created_at', 'updated_ats']) ?: [];
-        return $this->success($data);
 
+        return $this->success($data);
     }
 
     public function update(int $id)
@@ -55,8 +56,8 @@ class TaskController extends BaseController
             return $this->error('task is not found');
         }
         $this->model->whereId($id)->update($data);
-        return $this->success();
 
+        return $this->success();
     }
 
     public function destroy(int $id)
@@ -65,7 +66,7 @@ class TaskController extends BaseController
             return $this->error('task is not found', 30001);
         }
         $res = $this->model->whereId($id)->delete();
+
         return $this->success([], 'ok');
     }
-
 }

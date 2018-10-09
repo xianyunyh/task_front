@@ -19,16 +19,17 @@ class HostValidator implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $host
+     * @param string $attribute
+     * @param mixed  $host
+     *
      * @return bool
      */
     public function passes($attribute, $host)
     {
-        return (preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $host) //valid chars check
-            && preg_match("/^.{1,253}$/", $host) //overall length check
+        return preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $host) //valid chars check
+            && preg_match('/^.{1,253}$/', $host) //overall length check
             && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $host) //length of each label
-            && filter_var($host, FILTER_VALIDATE_IP)); //is not an IP address;
+            && filter_var($host, FILTER_VALIDATE_IP); //is not an IP address;
     }
 
     /**
