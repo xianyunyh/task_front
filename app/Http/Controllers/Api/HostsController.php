@@ -20,14 +20,15 @@ class HostsController extends BaseController
 
     /**
      * @api  POST /hosts/
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function store()
     {
-        $posts    = collect(request()->json())->toArray();
+        $posts = collect(request()->json())->toArray();
         $validate = Validator::make($posts, [
-            'name' => "required",
-            'host' => ['required', 'string', new HostValidator()]
+            'name' => 'required',
+            'host' => ['required', 'string', new HostValidator()],
         ]);
         if ($validate->fails()) {
             return $this->error($validate->errors()->first(), 30002);
@@ -36,12 +37,13 @@ class HostsController extends BaseController
         if (false === $insert) {
             return $this->error('add error', 30004);
         }
+
         return $this->success();
     }
 
-
     /**
      * @api GET /hosts/
+     *
      * @return
      */
     public function index()
@@ -51,19 +53,22 @@ class HostsController extends BaseController
 
     /**
      * @api  GET /hosts/:id
-     * @param int $id
      *
+     * @param int $id
      */
     public function show(int $id)
     {
         $data = collect($this->model->find($id))
             ->except(['created_at', 'updated_ats']) ?: [];
+
         return $this->success($data);
     }
 
     /**
      * @api  PUT /hosts/:id
+     *
      * @param int $id
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function update(int $id)
@@ -74,6 +79,7 @@ class HostsController extends BaseController
             return $this->error('host不存在');
         }
         $this->model->whereId($id)->update($data);
+
         return $this->success();
     }
 
@@ -86,6 +92,7 @@ class HostsController extends BaseController
             return $this->error('host is not found', 30001);
         }
         $res = $this->model->whereId($id)->delete();
+
         return $this->success([], 'ok');
     }
 }

@@ -12,11 +12,11 @@ class ApiServiceProvider extends ServiceProvider
             return new \Dingo\Api\Auth\Provider\Basic($app['auth'], 'email');
         });
         app('Dingo\Api\Exception\Handler')->setErrorFormat([
-                'message' => ':message',
-                'errors' => ':errors',
-                'code' => ':code',
+                'message'     => ':message',
+                'errors'      => ':errors',
+                'code'        => ':code',
                 'status_code' => ':status_code',
-                'debug' => ':debug'
+                'debug'       => ':debug',
         ]);
     }
 
@@ -29,5 +29,4 @@ class ApiServiceProvider extends ServiceProvider
     {
         //
     }
-
 }
