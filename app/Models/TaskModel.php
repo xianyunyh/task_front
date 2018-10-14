@@ -13,6 +13,6 @@ class TaskModel extends Model
 
     public function host()
     {
-        return $this->belongsTo('App\\Models\\HostsModel','host_id');
+        return $this->belongsTo('App\\Models\\HostsModel','host_id')->select(array('id', 'name'));;
     }
 }

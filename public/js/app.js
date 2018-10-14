@@ -70526,11 +70526,11 @@ function getTaskInfo(id) {
         method: 'get'
     });
 }
-function addTask(param) {
+function addTask(data) {
     return Object(__WEBPACK_IMPORTED_MODULE_0__utils_request__["a" /* default */])({
         url: 'v1/hosts',
         method: 'post',
-        data: param
+        data: data
     });
 }
 function updateTask(param) {

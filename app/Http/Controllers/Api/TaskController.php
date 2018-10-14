@@ -39,10 +39,14 @@ class TaskController extends BaseController
      */
     public function show(int $id)
     {
-        $m = $this->model->find($id);
-        dd($m->host);
-        $data = collect($this->model->find($id))
-            ->except(['created_at', 'updated_ats']) ?: [];
+        if (collect($this->model->with('host')->find($id))
+            ->except(['created_at', 'updated_ats'])
+        ) {
+            $data = collect($this->model->with('host')->find($id))
+                ->except(['created_at', 'updated_ats']);
+        } else {
+            $data = [];
+        }
         return $this->success($data);
 
     }
